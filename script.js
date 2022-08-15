@@ -30,6 +30,7 @@ Test data for 6.: First, use players 'Davies', 'Muller', 'Lewandowski' and 'Kimm
 Then, call the function again with players from game.scored
 GOOD LUCK 😀
  */
+
 //!The Complete JavaScript Course 16
 const game = {
 team1: 'Bayern Munich',
@@ -63,6 +64,7 @@ players: [
 ],
 ],
 score: '4:0',
+
 scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
 'Hummels'],
 date: 'Nov 9th, 2037',
@@ -73,36 +75,65 @@ team2: 6.5,
 },
 };
 
-//!1)
-const [players1 , players2] = game.players;
-console.log(players1 , players2);
-//!2
-// const fieldPlayers = [...game.players[0]];
-// const players1 = [`gk:${fieldPlayers}`];
-// console.log(players1);
-
-// const fieldPlayers2 = [...game.players[1]];
-// const players2 = [`gk:${fieldPlayers2}`];
-// console.log(players2);
-const [gk,...fieldPlayers] = players1;
-console.log(gk,fieldPlayers);
 
 
-//!3
-// const allPlayers = players1.concat(players2);
+
+//! v-115
+//?1) 
+
+
+for (const [i,player] of game.scored.entries()){
+console.log(`Goal ${i +1 }: ${player}`);
+}
+
+//? 2)
+
+let avr = 0;
+const odds = Object.values(game.odds)
+for(const odd of odds ){
+  avr += odd;
+  // console.log(`The average: ${avr}`);
+  avr/= odds.length;
+  console.log(`The average: ${avr}`);
+}
+//?3)
+
+for(const [team , odd] of Object.entries(game.odds)){
+  // console.log(team,odd);
+  const teamString = team ==='x'? 'draw':`victory ${game[team]}`
+  console.log(`Odd of ${teamString} ${odd}`);
+}
+
+// //!1)
+// const [players1 , players2] = game.players;
+// console.log(players1 , players2);
+// //!2
+// // const fieldPlayers = [...game.players[0]];
+// // const players1 = [`gk:${fieldPlayers}`];
+// // console.log(players1);
+
+// // const fieldPlayers2 = [...game.players[1]];
+// // const players2 = [`gk:${fieldPlayers2}`];
+// // console.log(players2);
+// const [gk,...fieldPlayers] = players1;
+// console.log(gk,fieldPlayers);
+
+
+// //!3
+// // const allPlayers = players1.concat(players2);
+// // console.log(allPlayers);
+
+// const allPlayers = [...players1,...players2];
 // console.log(allPlayers);
+// //!4 
+// const players1Final = [...players1,'Thiago', 'Coutinho', 'Perisic']
 
-const allPlayers = [...players1,...players2];
-console.log(allPlayers);
-//!4 
-const players1Final = [...players1,'Thiago', 'Coutinho', 'Perisic']
+// console.log(players1Final);
 
-console.log(players1Final);
+// //!5 
 
-//!5 
-
-const {odds:{team1, x:draw , team2}} = game;
-console.log(team1,draw,team2);
+// const {odds:{team1, x:draw , team2}} = game;
+// console.log(team1,draw,team2);
 
 //!6
 /**
@@ -111,17 +142,17 @@ names (not an array) and prints each of them to the console, along with the
 number of goals that were scored in total (number of player names passed in)
  */
 
-const printGoals = function(...players){
-  console.log(players);
-  console.log(`${players.length} goals were scored`);
-}
+// const printGoals = function(...players){
+//   console.log(players);
+//   console.log(`${players.length} goals were scored`);
+// }
 
 // printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
 // printGoals('Davies', 'Muller');
 
-printGoals(...game.scored)
+// printGoals(...game.scored)
 
-//!7)
-//? here we use the logical no if 
-team1>team2 && console.log("team 1 is winner ");
-team1<team2 && console.log("team 2 is winner ");
+// //!7)
+// //? here we use the logical no if 
+// team1>team2 && console.log("team 1 is winner ");
+// team1<team2 && console.log("team 2 is winner ");
