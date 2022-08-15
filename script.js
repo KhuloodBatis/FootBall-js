@@ -82,27 +82,27 @@ team2: 6.5,
 //?1) 
 
 
-for (const [i,player] of game.scored.entries()){
-console.log(`Goal ${i +1 }: ${player}`);
-}
+// for (const [i,player] of game.scored.entries()){
+// console.log(`Goal ${i +1 }: ${player}`);
+// }
 
 //? 2)
 
-let avr = 0;
-const odds = Object.values(game.odds)
-for(const odd of odds ){
-  avr += odd;
-  // console.log(`The average: ${avr}`);
-  avr/= odds.length;
-  console.log(`The average: ${avr}`);
-}
+// let avr = 0;
+// const odds = Object.values(game.odds)
+// for(const odd of odds ){
+//   avr += odd;
+//   // console.log(`The average: ${avr}`);
+//   avr/= odds.length;
+//   console.log(`The average: ${avr}`);
+// }
 //?3)
 
-for(const [team , odd] of Object.entries(game.odds)){
-  // console.log(team,odd);
-  const teamString = team ==='x'? 'draw':`victory ${game[team]}`
-  console.log(`Odd of ${teamString} ${odd}`);
-}
+// for(const [team , odd] of Object.entries(game.odds)){
+//   // console.log(team,odd);
+//   const teamString = team ==='x'? 'draw':`victory ${game[team]}`
+//   console.log(`Odd of ${teamString} ${odd}`);
+// }
 
 // //!1)
 // const [players1 , players2] = game.players;
@@ -156,3 +156,43 @@ number of goals that were scored in total (number of player names passed in)
 // //? here we use the logical no if 
 // team1>team2 && console.log("team 1 is winner ");
 // team1<team2 && console.log("team 2 is winner ");
+
+
+//!=-=-=-=--=--chaleng#3 
+const gameEvents = new Map([
+  [17,'⚽ GOAL'],
+  [36,'🔁 Substiution'],
+  [47,'⚽ GOAL'],
+  [61,'🔁 Substiution'],
+  [64,'🟨 Yellow card'],
+  [69,'🟥 Red card '],
+  [70,'🔁 Substiution'],
+  [72,'🔁 Substiution'],
+  [76,'⚽ GOAL'],
+  [80,'⚽ GOAL']
+]);
+
+//?1
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+//?2
+
+gameEvents.delete(64);
+console.log(gameEvents);
+
+//?3
+
+console.log(`An event happened,on average, every ${90/gameEvents.size} minutes`);
+
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+
+console.log(`An event happened,on average, every ${time/gameEvents.size} minutes`);
+
+//?4
+
+for (const [min,event] of gameEvents){
+const half = min <= 45 ? 'FIRST': 'SECOND';
+console.log(`[${half}HALF] ${min}: ${event}`);
+}
